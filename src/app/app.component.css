@@ -1,0 +1,25 @@
+.showRecordDetails{
+    /* color: red; */
+}
+
+.showRecordDetails:hover{
+    color: black;
+    cursor: pointer;
+    background-color: lightblue;
+    box-shadow: 2px 3px 4px 2px gray;
+}
+
+td{
+    padding: 5px;
+ 
+}
+
+.hide_extra_text{
+    white-space: nowrap; 
+    width: 150px!important; 
+    overflow: hidden!important;
+    text-overflow: ellipsis!important; 
+}
+th{
+    padding: 5px;
+}

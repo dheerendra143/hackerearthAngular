@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="jumbotron text-center" style="padding: 1px;">
+    <h1>Upotus Movie Details</h1>
+    <p>Resize this responsive page to see the effect!</p>
+  </div>
+
+  <div>
+    <div *ngIf="!resultData" style="text-align:center;">
+      <h1>
+        {{"Loading..."}}
+      </h1>
+    </div>
+    <div *ngIf="resultData">
+      <table class=" table-bordered" style="width:100%;display:block;">
+        <thead>
+
+          <tr>
+            <td colspan="11" style="text-align:center;">
+              <button style="margin-left:5px;margin-right:5px;" title="First" (click)="firstRecord()" *ngIf="recordLimitStart>1">
+                |<< </button> <button style="margin-left:5px;margin-right:5px;" title="Previous" (click)="previousRecord()"
+                  *ngIf="recordLimitStart>1">
+                  < </button> <button style="margin-left:5px;margin-right:5px;" title="Next" (click)="nextRecord()"
+                    *ngIf="recordLimitEnd<resultData.length">
+                    >
+
+              </button>
+              <button style="margin-left:5px;margin-right:5px;" title="Last" (click)="endRecord()" *ngIf="recordLimitEnd<resultData.length">
+                >>|
+              </button>
+
+            </td>
+          </tr>
+          <tr>
+            <th style="width:1%">{{"#"}}</th>
+            <th >
+              <h4>
+                {{"Movie Title"}}
+              </h4>
+
+            </th>
+            <!-- <th style="width:15%">
+
+              <h4>
+                {{"Director Name"}}
+              </h4>
+
+
+            </th> -->
+            <!-- <th style="width:20%">
+              {{"Cast"}}
+              
+            </th> -->
+            <th >
+              {{"Genres"}}
+              <p>
+                <input type="text" style="width: 100px;" [(ngModel)]="genres">
+              </p>
+            </th>
+            <th >
+              {{"Language"}}
+              <p>
+                <input style="width: 50px;" type="text" [(ngModel)]="language">
+              </p>
+            </th>
+            <th >
+              {{"Country"}}
+              <p>
+                <input style="width: 50px;" type="text" [(ngModel)]="country">
+              </p>
+            </th>
+            <!-- <th style="width:5%">
+              {{"Content Rating"}}
+              
+            </th> -->
+            <th>
+              {{"Budget"}}
+              
+              <p>
+                  <input style="width: 50px;" type="text" [(ngModel)]="budget">
+                </p>
+            </th>
+            <th >
+              {{"Title Year"}}
+              <p>
+                <input style="width: 50px;" type="text" [(ngModel)]="title_year">
+              </p>
+            </th>
+            <th >
+              {{"Movie Link"}}
+
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="showRecordDetails" *ngFor="let list of resultData
+          |filterRecord:'genres':genres|
+          filterRecord:'language':language|
+          filterRecord:'budget':budget|
+          filterRecord:'country':country|
+          filterRecord:'title_year':title_year| 
+          slice:recordLimitStart:recordLimitEnd">
+            <td style="width:1%;text-align:center;">
+              {{resultData.indexOf(list)}}
+            </td>
+            <td >
+              <h4 title="Movie Title:{{list.movie_title}}">
+                {{list.movie_title}}
+              </h4>
+              <!-- <p title="Movie Keywords:{{list.plot_keywords}}">
+                {{list.plot_keywords}}
+              </p> -->
+
+            </td>
+            <!-- <td title=" {{list.director_name}}">
+              
+              {{list.director_name}}
+            </td>
+            <td >
+              <p title=" {{list.actor_1_name}}">
+                {{list.actor_1_name}}
+              </p>
+              <p title=" {{list.actor_2_name}}">
+                {{list.actor_2_name}}
+              </p>
+
+
+            </td> -->
+            <td >
+              <p class="hide_extra_text" title=" {{list.genres}}">
+                {{list.genres}}
+              </p>
+
+            </td>
+            <td >
+              {{list.language}}
+            </td>
+            <td >
+              {{list.country}}
+            </td>
+            <!-- <td>
+              {{list.content_rating}}
+            </td> -->
+            <td>
+              {{list.budget}}
+            </td>
+            <td>
+              {{list.title_year}}
+            </td>
+            <td >
+
+              <a href="{{list.movie_imdb_link}}" target="_blank">Movie Link</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="11" style="text-align:center;">
+              <button style="margin-left:5px;margin-right:5px;" title="First" (click)="firstRecord()" *ngIf="recordLimitStart>1">
+                |<< </button> <button style="margin-left:5px;margin-right:5px;" title="Previous" (click)="previousRecord()"
+                  *ngIf="recordLimitStart>1">
+                  < </button> <button style="margin-left:5px;margin-right:5px;" title="Next" (click)="nextRecord()"
+                    *ngIf="recordLimitEnd<resultData.length">
+                    >
+
+              </button>
+              <button style="margin-left:5px;margin-right:5px;" title="Last" (click)="endRecord()" *ngIf="recordLimitEnd<resultData.length">
+                >>|
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  
+</body>
+
+</html>
